@@ -25,30 +25,42 @@ class Solution:
 
     return left + [node.val] + right
 
-//
   def inOrderIteratively(self, root: Node):
     node = root
     stack = []
     path = []
+    print('node')
+    print('node', node)
+    print('node.val', node.val)
 
     while True:
 
-      print(node)
-      print(node.val)
-      print(node.left)
+      node != None and print(node.val)
       while node != None and node.left != None:
         stack.append(node)
         node = node.left
 
-      print('stack', stack)
+      print('stack', [item.val for item in stack])
+      if len(stack) == 0:
+        return path
+
       currentNode = stack.pop()
       path.append(currentNode.val)
 
       print('path', path)
 
+      print('current', currentNode.val)
       node = currentNode.right
-      if node == None:
-        return path
+
+      # if node != None:
+      #   path.append(node.val)
+
+      # if node == None:
+      #   if len(stack) > 0:
+      #     node = stack.pop()
+      #   else:
+      #     return path
+      # print('new node', node.val)
 
     return path
 
@@ -57,10 +69,15 @@ class Solution:
     return self.inOrderIteratively(root)
 
 
+#          0
+#        1   2
+#      3  4  5  6
+#     7
+
 my = Solution()
 
 # n = Node(1, None, Node(2, Node(3)))
-n = Node(0, Node(1, Node(3, Node(7))), Node(4)), Node(2, Node(5), Node(6))
+n = Node(0, Node(1, Node(3, Node(7)), Node(4)), Node(2, Node(5), Node(6)))
 
 ans = my.inorderTraversal(n)
 
